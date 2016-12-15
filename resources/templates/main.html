@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <span class="error-message">{{not-auth}}</span>
+    {% if session.admin %}
+        <a href="/posts/add" style="margin: 10px;" class="btn btn-success">add post</a>
+        <a href="/categories/add" style="margin: 10px;" class="btn btn-success">add category</a>
+    {% endif %}
+    {% for item in posts %}
+        <div class="post row">
+            <div class="col-md-10">
+                <a href="/posts/{{item.id}}">{{item.title}}</a>
+                <span class="date">({{item.created_at}})</span>
+                <p>{{item.content}}</p>
+            </div>
+            <div class="col-md-2">
+                {% if session.admin %}
+                  <a class="btn btn-warning manage-button" href="/posts/{{item.id}}/edit">edit</a>
+                  <a class="btn btn-danger manage-button" href="/posts/{{item.id}}/delete">delete</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

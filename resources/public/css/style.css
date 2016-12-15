@@ -1,0 +1,69 @@
+html {
+	margin: 0;
+    padding: 0;
+}
+
+body {
+	background: #FFFFFF;
+	font-family: 'Bree Serif', serif;
+}
+
+.header {
+	text-align: center;
+    padding: 15px 0;
+    background: #DDDDDD;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.logo {
+	text-decoration: none;
+    font-size: 25px;
+}
+
+.main {
+	width: 970px;
+}
+
+.greeting {
+	padding: 10px;
+    color: #a74242;
+    font-size: 15px;
+}
+
+.comments {
+	padding: 15px;
+    background: white;
+    border-radius: 15px;
+}
+
+.error-message {
+	padding: 10px;
+    color: #a91919;
+    font-size: 15px;
+}
+
+.date {
+	color: gray;
+    font-size: 10px;
+}
+
+.header h2 {
+	margin: 0;
+}
+
+.header a {
+	margin-right: 5px;
+}
+
+.post {
+	padding: 15px 5px;
+	border-radius: 10px;
+	border: 2px solid #FF851B;
+	margin-bottom: 10px;
+}
+
+.manage-button {
+	display: block;
+    margin-bottom: 3px;
+}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="post row">
+    <div class="col-md-10">
+        <h1>{{post.title}}</h1>
+        <span class="date">{{post.created_at}}</span>
+        <p>{{post.content}}</p>
+    </div>
+    <div class="col-md-2">
+        {% if session.admin %}
+            <a href="/posts/{{post.id}}/edit" class="btn btn-warning manage-button">edit</a>
+            <a href="/posts/{{post.id}}/delete" class="btn btn-info manage-button">delete</a>
+        {% endif %}
+    </div>
+</div>
+<div class="container" style="width:540px;">
+    {% if session.user_id %}
+      <form style="margin-bottom:10px;" action="/comments/create" method="POST">
+          <div class="form-group">
+              <textarea class="form-control" name="content" id="content" rows="5"></textarea>
+          </div>
+          <input type="hidden" name="post_id" value="{{post.id}}">
+          <button class="btn btn-warning">comment</button>
+      </form>
+    {% endif %}
+    <div class="comments row">
+        {% for comment in comments %}
+            <div class="comment row">
+                <div class="col-md-10">
+                    <h3>{{comment.content}}</h3>
+                    <span class="date">{{comment.created_at}}</span>
+                </div>
+                <div class="col-md-2">
+                    {% if session.admin %}
+                      <a href="/comments/{{comment.id}}/delete" class="btn btn-danger manage-button">delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

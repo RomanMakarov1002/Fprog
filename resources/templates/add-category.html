@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add new category to the Board</h2>
+<form method="post" action="/categories/add">
+    <div class="form-group">
+        <label for="category_name">Category Name</label>
+        <input class="form-control" type="text" id="category_name" name="category_name" placeholder="category name" required/>
+    </div>
+    <button class="btn btn-warning">add</button>
+</form>
+
+{% endblock %}

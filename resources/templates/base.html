@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    {% style "/bootstrap/css/bootstrap.min.css" %}
-    {% style "/css/styles.css" %}
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>The Board platform</title>
 
+        {% style "https://fonts.googleapis.com/css?family=Bree+Serif" %}
+        {% style "/css/bootstrap.min.css" %}
+        {% style "/css/style.css" %}
+    </head>
+    <body>
+        <div class="header row">
+            <div class="col-md-10">
+                <a class="logo" href="/">The Board platform</a>
+            </div>
+            <div class="col-md-2">
+                {% if session.user_id %}
+                    <span class="greeting">Hi, {{session.username}}</span>
+                    <a class="btn btn-error" href="/logout">quit</a>
+                {% else %}
+                    <a class="btn btn-warning" href="/login">log in</a>
+                    <a class="btn btn-warning" href="/signup">sign up</a>
+                {% endif %}
+            </div>
+        </div>
 
-</head>
-
-<body>
-<div class="header">
-    {{page}}
-    <a href="/home">Home</a>
-
-</div>
-
-<div class="container">
-    {% block content %}
-    {% endblock %}
-</div>
-{% script "/bootstrap/js/bootstrap.min.js" %}
-{% script "/js/jquery.min.js" %}
-</div>
-</body>
+        <div class="container main">
+          {% block content %}
+          {% endblock %}
+        </div>
+    </body>
+</html>
