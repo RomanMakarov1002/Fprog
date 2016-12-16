@@ -3,7 +3,7 @@
 <div class="post row">
     <div class="col-md-10">
         <h1>{{post.title}}</h1>
-        <span class="date">{{post.created_at}}</span>
+        <span class="glyphicon glyphicon-calendar">{{post.created_at}}</span>
         <p>{{post.content}}</p>
     </div>
     <div class="col-md-2">
@@ -27,8 +27,9 @@
         {% for comment in comments %}
             <div class="comment row">
                 <div class="col-md-10">
+                    <span class="glyphicon glyphicon-user">{{comment.user.username}}</span> || <span class="glyphicon glyphicon-calendar">{{comment.created_at}}</span>
+                    || <span class="glyphicon glyphicon-phone">{{comment.user.phone}}</span>
                     <h3>{{comment.content}}</h3>
-                    <span class="date">{{comment.created_at}}</span>
                 </div>
                 <div class="col-md-2">
                     {% if session.admin %}

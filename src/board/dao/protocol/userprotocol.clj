@@ -2,4 +2,5 @@
 
 (defprotocol user-rep-protocol
 	(create [this params])
-	(read [this username]))
+	(read [this username])
+	(read-by-id [this id]))

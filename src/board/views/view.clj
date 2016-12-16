@@ -22,9 +22,11 @@
   (layout/render "add-category.html"))
 
 (defn view-post [{{:keys [id] :as id} :params session :session}]
-  (layout/render "post.html" {:comments (comments/all id) :post (posts/read id) :session session}))
+  ;;(layout/render "post.html" {:comments (comments/all id) :post (posts/read id) :session session})
+  (layout/render "post.html" {:comments (comments/detailed_comments id) :post (posts/read id) :session session})
+  )
 
-(defn edit-post [{{:keys [id] :as id} :params}] 
+(defn edit-post [{{:keys [id] :as id} :params}]
   (layout/render "edit-post.html" {:post (posts/read id)}))
 
 (defn not-auth [] 

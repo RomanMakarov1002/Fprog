@@ -11,5 +11,9 @@
 
 	(read [this username]
   		(first (jdbc/query connector/db
-    	(sql/select * :user (sql/where {:username username}))))))
+    	(sql/select * :user (sql/where {:username username})))))
+
+	(read-by-id [this id]
+		(first (jdbc/query connector/db
+											 (sql/select * :user (sql/where {:id id}))))))
 

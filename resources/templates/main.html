@@ -8,8 +8,8 @@
     {% for item in posts %}
         <div class="post row">
             <div class="col-md-10">
-                <a href="/posts/{{item.id}}">{{item.title}}</a>
-                <span class="date">({{item.created_at}})</span>
+                <h3><a href="/posts/{{item.id}}">{{item.title}}</a></h3>
+                <span class="glyphicon glyphicon-calendar">({{item.created_at}})</span>
                 <p>{{item.content}}</p>
             </div>
             <div class="col-md-2">
