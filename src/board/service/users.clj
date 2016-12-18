@@ -45,14 +45,12 @@
       )))
 
 (defn login [{{:keys [username password] :as user} :params session :session} error success]
-  (if (and (is-valid-username [username]) (is-valid-username [password]))
-    (let [{id :id stored-pass :password userrole :role} (.read userdao username)]
-      (if (and stored-pass (= password stored-pass))
-        (if (= userrole "admin")
-          (-> (success) (assoc :session (assoc session :user_id id :admin true :username username)))
-          (-> (success) (assoc :session (assoc session :user_id id :username username))))
-        (error)))
-    )
+  (let [{id :id stored-pass :password userrole :role} (.read userdao username)]
+    (if (and stored-pass (= password stored-pass))
+      (if (= userrole "admin")
+        (-> (success) (assoc :session (assoc session :user_id id :admin true :username username)))
+        (-> (success) (assoc :session (assoc session :user_id id :username username))))
+      (error)))
   )
 
 (defn logout [{session :session} success]

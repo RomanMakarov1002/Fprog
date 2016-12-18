@@ -68,3 +68,7 @@ body {
 	display: block;
     margin-bottom: 3px;
 }
+
+.select-categories {
+    border : 2px solid blue;
+}

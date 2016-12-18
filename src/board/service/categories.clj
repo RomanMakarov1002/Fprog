@@ -9,3 +9,7 @@
 
 (defn delete [{{:keys [id] :as id} :params}]
     (.delete categorydao id))
+
+(defn get-all []
+  (.read-all categorydao))
+

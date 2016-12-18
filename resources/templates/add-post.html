@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
+
 <h2>Add new post to the Board</h2>
 <form method="post" action="/posts/add">
     <div class="form-group">
         <label for="title">Title</label>
         <input class="form-control" type="text" id="title" name="title" placeholder="title" required/>
     </div>
-
+    <select class="select-categories" name="category_id">
+        {% for category in categories %}
+        <option value={{category.id}}>{{category.category_name}}</option>
+        {% endfor %}
+    </select>
     <div class="form-group">
         <label for="content">Content</label>
         <textarea name="content" class="form-control" id="content" rows="20" placeholder="content" required></textarea>
