@@ -16,10 +16,6 @@
     (let [res (.matcher value email)]
       (.matches res))))
 
-(defn is-int-in-interval? [number max min]
-  (let [int-number (new Integer number)]
-    (and (<= int-number max ) (>= int-number min))))
-
 (defn is-alphabetical [str]
   (let [value (java.util.regex.Pattern/compile "[A-Za-z]{1,45}")]
     (let [res (.matcher value str)]

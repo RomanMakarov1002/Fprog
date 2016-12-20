@@ -3,6 +3,7 @@
   			    [compojure.handler :as handler]
             [compojure.route :as route]
             [board.views.view :as views]
+            [board.service.dsl :as service-dsl]
             [board.service.posts :as posts]
             [ring.util.response :refer [redirect]]
             [board.layout :as layout]
@@ -11,10 +12,12 @@
             [board.service.users :as users]
             [board.middleware :refer [wrap-internal-error]]
             [ring.middleware.session :refer [wrap-session]]
-            [ring.middleware.defaults :refer :all]))
+
+            [ring.middleware.defaults :refer :all]
+            ))
 
 (defroutes public-routes
-  
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; only admin
 
   (GET "/categories/add" request
@@ -83,8 +86,18 @@
       (views/not-auth)))
 
 
-(route/resources "/"))
+   (GET "/testcode" request
+     (if (get-in request [:session :admin])
+               (views/sql-code )
+               (views/not-auth)))
 
+   (POST "/testcode" request
+     (if (get-in request [:session :admin])
+       (service-dsl/code-do request #(redirect "/testcode") #(layout/render "signup.html" (merge {:error-message ""})))
+       (views/not-auth))
+
+           (route/resources "/"))
+           )
 (defroutes app-routes
   public-routes
   (route/not-found 

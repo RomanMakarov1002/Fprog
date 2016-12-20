@@ -5,6 +5,7 @@
 (def postdao (post/->post-rep))
 (def categorydao (category/->category-rep))
 
+
 (def now
   (str (java.sql.Timestamp. (System/currentTimeMillis))))
 

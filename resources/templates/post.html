@@ -24,9 +24,8 @@
           <button class="btn btn-warning">comment</button>
       </form>
     {% endif %}
-    <div class="comments row">
         {% for comment in comments %}
-            <div class="comment row">
+            <div class="comments comment row">
                 <div class="col-md-10">
                     <span class="glyphicon glyphicon-user">{{comment.user.username}}</span> || <span class="glyphicon glyphicon-calendar">{{comment.created_at}}</span>
                     || <span class="glyphicon glyphicon-phone">{{comment.user.phone}}</span>
@@ -39,6 +38,5 @@
                 </div>
             </div>
         {% endfor %}
-    </div>
 </div>
 {% endblock %}

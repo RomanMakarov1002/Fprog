@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <h1>DSL</h1>
+    <form method="post" action="/testcode">
+        <div class="form-group">
+            <h2>Example:</h2>
+            1) insert object to table: "insert [table-name] [username] [password]"<br>
+            2) delete object from table: "delete-by-name [table-name] [username] [null]"<br>
+            3) update object in table: "update-password [table-name] [username] [password]"<br><br><br>
+            <label for="my-code">Code string</label>
+            <input class="form-control" type="text" id="my-code" name="my-code" />
+        </div>
+
+        <button class="btn btn-success">Do</button>
+        <span class="error-message">{{error-message}}</span>
+    </form>
+</div>
+{% endblock %}

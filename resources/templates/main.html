@@ -4,6 +4,8 @@
     {% if session.admin %}
         <a href="/posts/add" style="margin: 10px;" class="btn btn-success">add post</a>
         <a href="/categories/add" style="margin: 10px;" class="btn btn-success">add category</a>
+        <a href="/testcode" style="margin: 10px;" class="btn btn-success"> dsl </a>
+        <label> {{user-activity}}</label>
     {% endif %}
     {% for post in posts %}
         <div class="post row">

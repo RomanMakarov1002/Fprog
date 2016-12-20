@@ -15,8 +15,8 @@
             </div>
             <div class="col-md-2">
                 {% if session.user_id %}
-                    <span class="greeting">Hi, {{session.username}}</span>
-                    <a class="btn btn-error" href="/logout">quit</a>
+                    <span class="label label-success">Hi, {{session.username}}</span>
+                    <a class="btn btn-warning" href="/logout">quit</a>
                 {% else %}
                     <a class="btn btn-warning" href="/login">log in</a>
                     <a class="btn btn-warning" href="/signup">sign up</a>

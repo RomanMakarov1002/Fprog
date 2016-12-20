@@ -1,10 +1,12 @@
 (ns board.service.comments
   (:use compojure.core)
   (:require [board.dao.comment :as comment]
-            [board.dao.user :as user]))
+            [board.dao.user :as user]
+            [board.service.logger :as logger]))
 
 (def commentdao (comment/->comment-rep))
 (def userdao (user/->user-rep))
+
 
 (def now
   (str (java.sql.Timestamp. (System/currentTimeMillis))))
@@ -17,12 +19,15 @@
 (defn me [session]
   (get session :user_id))
 
+
 (defn create [{{:keys [post_id content] :as comment} :params session :session}]
   (if (is-valid-comment content)
-    (.create commentdao
-             (merge comment {:created_at now :user_id (me session)}))
+    (do  (.create commentdao
+                  (merge comment {:created_at now :user_id (me session)}))
+         (logger/log-comment ((.read-by-id userdao (me session)):username) (comment :created_at) post_id content))
     nil)
   )
+
 
 (defn read [id]
   (.read commentdao id))
@@ -31,7 +36,7 @@
   (sort-by :created_at #(compare %2 %1)
            (.all commentdao post_id))
   )
-;;((println (simple_comment :user_id)))
+
 (defn detailed_comments [post_id]
   (for [simple_comment (all post_id)]  (assoc simple_comment :user (.read-by-id userdao (simple_comment :user_id )))))
 
